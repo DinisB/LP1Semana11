@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PlayerManagerMVC
+namespace PlayerManagerMVC2
 {
     public interface IView
     {

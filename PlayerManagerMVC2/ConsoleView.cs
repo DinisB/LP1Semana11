@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PlayerManagerMVC
+namespace PlayerManagerMVC2
 {
     public class ConsoleView : IView
     {

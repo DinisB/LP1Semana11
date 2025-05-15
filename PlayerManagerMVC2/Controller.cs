@@ -1,6 +1,7 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
-namespace PlayerManagerMVC
+namespace PlayerManagerMVC2
 {
     public class PlayerController
     {
@@ -14,16 +15,38 @@ namespace PlayerManagerMVC
 
         private readonly IView view;
 
-        public PlayerController(IView view)
+        public PlayerController(IView view, string filename)
         {
             this.view = view;
             compareByName = new CompareByName(true);
             compareByNameReverse = new CompareByName(false);
-            playerList = new List<Player>() {
-            new Player("Best player ever", 100),
-            new Player("An even better player", 500)
-        };
+            playerList = LoadPlayersFromFile(filename);
         }
+
+        private List<Player> LoadPlayersFromFile(string filename)
+        {
+            var players = new List<Player>();
+
+            foreach (string line in File.ReadLines(filename))
+            {
+                string[] parts = line.Split(',');
+
+                if (parts.Length == 2 &&
+                    !string.IsNullOrWhiteSpace(parts[0]) &&
+                    int.TryParse(parts[1], out int score))
+                {
+                    string name = parts[0].Trim();
+                    players.Add(new Player(name, score));
+                }
+                else
+                {
+                    view.ShowMessage($"Aviso: linha ignorada '{line}' (formato inválido)");
+                }
+            }
+
+            return players;
+        }
+
 
         public void Run()
         {
