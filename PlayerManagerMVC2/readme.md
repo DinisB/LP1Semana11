@@ -1,5 +1,3 @@
-```
-mermaid
 classDiagram
     class Program {
         +Main(args: string[])
@@ -59,4 +57,3 @@ classDiagram
     PlayerController --> Player
     PlayerController --> CompareByName
     CompareByName --> Player
-```
