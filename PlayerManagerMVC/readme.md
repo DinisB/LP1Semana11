@@ -1,5 +1,4 @@
-```
-mermaid
+```mermaid
 classDiagram
     class Program {
         +Main(args: string[])
