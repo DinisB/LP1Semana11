@@ -37,15 +37,11 @@ public class Controller
             else
                 equations.Add(2);
 
-            if (int.TryParse(parts[1], out int numa))
-                aList.Add(numa);
-            else
-                aList.Add(0);
+            int.TryParse(parts[1], out int numa);
+            aList.Add(numa);
 
-            if (int.TryParse(parts[2], out int numb))
-                bList.Add(numb);
-            else
-                bList.Add(0);
+            int.TryParse(parts[2], out int numb);
+            bList.Add(numb);
         }
     }
     public void Run()
@@ -88,6 +84,10 @@ public class Controller
             {
                 view.GetRightAnswer(correctAnswer);
                 wrongAnswers++;
+            }
+            if (wrongAnswers == 3)
+            {
+                break;
             }
         }
 
